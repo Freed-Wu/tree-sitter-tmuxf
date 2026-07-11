@@ -1,0 +1,54 @@
+========================================
+Example
+========================================
+#H is #{host}
+#{?host,#FFFFFF,#(ls -l)}
+#{||:#{pane_in_mode},#{alternate_on}}
+#{s/foo/bar/:foo}
+#{m/ri:^foo$,bar}
+#{C/ri:^foo$}
+#[fg=red,bg=blue,noreverse]
+
+---
+(pattern
+ (variable
+  (simple_expansion))
+ (variable
+  (expansion))
+ (variable
+  (if
+   (condition)
+   (pattern
+    (variable
+     (rgb)))
+   (pattern
+    (command
+     (shell)))))
+ (variable
+  (logic
+   (function)
+   (pattern
+    (variable
+     (expansion)))
+   (pattern
+    (variable
+     (expansion)))))
+ (variable
+  (unary
+   (function)
+   (pattern)))
+ (variable
+  (binary
+   (function)
+   (pattern)
+   (pattern)))
+ (variable
+  (unary
+   (function)
+   (pattern)))
+        (syntax
+         (key)
+         (value)
+         (key)
+         (value)
+         (key)))
