@@ -14,6 +14,7 @@
 ] @punctuation.delimiter
 
 [
+  "@"
   "%"
   "#"
 ] @punctuation.special
@@ -22,6 +23,8 @@
   "="
   "?"
 ] @operator
+
+(identifier) @variable
 
 [
   (format)

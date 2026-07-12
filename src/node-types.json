@@ -108,6 +108,10 @@
           "named": true
         },
         {
+          "type": "user_variable",
+          "named": true
+        },
+        {
           "type": "variable",
           "named": true
         }
@@ -157,6 +161,21 @@
         },
         {
           "type": "pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "user_variable",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -238,6 +257,10 @@
     "named": false
   },
   {
+    "type": "@",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -247,6 +270,10 @@
   },
   {
     "type": "condition",
+    "named": true
+  },
+  {
+    "type": "identifier",
     "named": true
   },
   {

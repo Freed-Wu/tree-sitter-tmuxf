@@ -14,13 +14,18 @@ export default grammar({
     pattern: $ => repeat1(
       choice(
         $._character,
+        $.user_variable,
         $.format,
         $.variable,
         $.command,
         $.syntax,
       ),
     ),
-    _character: _ => token.immediate(/[^#%,}]/),
+    _character: _ => token.immediate(/[^@#%,}]/),
+    user_variable: $ => seq(
+      '@',
+      alias(token.immediate(/[-_a-zA-Z]+/), $.identifier),
+    ),
     format: _ => seq(
       '%',
       token.immediate(/./),
@@ -113,7 +118,7 @@ export default grammar({
       '}',
     ),
     _unary: $ => alias(seq(
-      token.immediate(choice('!!', '!', /[a-df-ln-zA-OS-Z][^a-zA-Z:;][^:;]*/,)),
+      token.immediate(choice('!!', '!', /[a-df-ln-zA-OS-Z]/, /[a-df-ln-zA-OS-Z][^a-zA-Z:;}][^:;}]*/,)),
     ), $.function),
     unary: $ => seq(
       '#',

@@ -1,21 +1,75 @@
 ========================================
-Example
+Style
 ========================================
-%%#H is #{host}
-#{?host,#FFFFFF,#(ls -l)}
-#{||:#{pane_in_mode},#{alternate_on}}
-#{s/foo/bar/:foo}
-#{m/ri:^foo$,bar}
-#{C/ri:^foo$}
 #[fg=red,bg=blue,noreverse]
 
 ---
 (pattern
-  (format)
+  (syntax
+    (key)
+    (value)
+    (key)
+    (value)
+    (key)))
+
+========================================
+User variable
+========================================
+#{E:@mode-component}
+
+---
+(pattern
   (variable
-    (simple_expansion))
+    (unary
+      (function)
+      (pattern
+        (user_variable
+          (identifier))))))
+
+========================================
+Unary
+========================================
+#{C/ri:^foo$}
+
+---
+(pattern
   (variable
-    (expansion))
+    (unary
+      (function)
+      (pattern))))
+
+========================================
+Binary
+========================================
+#{m/ri:^foo$,bar}
+
+---
+(pattern
+  (variable
+    (binary
+      (function)
+      (pattern)
+      (pattern))))
+
+========================================
+Sed
+========================================
+#{s/foo/bar/:foo}
+
+---
+(pattern
+  (variable
+    (unary
+      (function)
+      (pattern))))
+
+========================================
+If
+========================================
+#{?host,#FFFFFF,#(ls -l)}
+
+---
+(pattern
   (variable
     (if
       (condition)
@@ -24,7 +78,28 @@ Example
           (rgb)))
       (pattern
         (command
-          (shell)))))
+          (shell))))))
+
+========================================
+String
+========================================
+%%#H is #{host}
+
+---
+(pattern
+  (format)
+  (variable
+    (simple_expansion))
+  (variable
+    (expansion)))
+
+========================================
+Logic
+========================================
+#{||:#{pane_in_mode},#{alternate_on}}
+
+---
+(pattern
   (variable
     (logic
       (function)
@@ -33,23 +108,4 @@ Example
           (expansion)))
       (pattern
         (variable
-          (expansion)))))
-  (variable
-    (unary
-      (function)
-      (pattern)))
-  (variable
-    (binary
-      (function)
-      (pattern)
-      (pattern)))
-  (variable
-    (unary
-      (function)
-      (pattern)))
-  (syntax
-    (key)
-    (value)
-    (key)
-    (value)
-    (key)))
+          (expansion))))))

@@ -13,6 +13,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "user_variable"
+          },
+          {
+            "type": "SYMBOL",
             "name": "format"
           },
           {
@@ -34,8 +38,29 @@
       "type": "IMMEDIATE_TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "[^#%,}]"
+        "value": "[^@#%,}]"
       }
+    },
+    "user_variable": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[-_a-zA-Z]+"
+            }
+          },
+          "named": true,
+          "value": "identifier"
+        }
+      ]
     },
     "format": {
       "type": "SEQ",
@@ -549,7 +574,11 @@
                 },
                 {
                   "type": "PATTERN",
-                  "value": "[a-df-ln-zA-OS-Z][^a-zA-Z:;][^:;]*"
+                  "value": "[a-df-ln-zA-OS-Z]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[a-df-ln-zA-OS-Z][^a-zA-Z:;}][^:;}]*"
                 }
               ]
             }
