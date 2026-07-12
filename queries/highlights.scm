@@ -18,9 +18,10 @@
   "#"
 ] @punctuation.special
 
-"=" @punctuation.assignment
-
-"?" @operator
+[
+  "="
+  "?"
+] @operator
 
 [
   (format)
