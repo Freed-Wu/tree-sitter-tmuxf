@@ -1,20 +1,36 @@
 [
-  "#{"
+  "{"
   "}"
-  "#("
+  "("
   ")"
-  "#{?"
-  ","
+  "["
+  "]"
 ] @punctuation.bracket
 
-(simple_expansion) @property
+[
+  ","
+  ";"
+  ":"
+] @punctuation.delimiter
 
-(expansion) @property
+[
+  "%"
+  "#"
+] @punctuation.special
 
-(rgb) @property
+"=" @punctuation.assignment
 
-(condition) @property
+"?" @operator
 
-(key) @property
+[
+  (format)
+  (simple_expansion)
+  (expansion)
+  (rgb)
+  (condition)
+  (key)
+] @property
 
-(value) @variable
+(value) @constant
+
+(function) @function.call

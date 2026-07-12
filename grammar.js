@@ -21,7 +21,10 @@ export default grammar({
       ),
     ),
     _character: _ => token.immediate(/[^#%,}]/),
-    format: _ => /%./,
+    format: _ => seq(
+      '%',
+      token.immediate(/./),
+    ),
     variable: $ => choice(
       $.simple_expansion,
       $.expansion,
@@ -34,22 +37,25 @@ export default grammar({
 
     simple_expansion: _ => seq(
       '#',
-      /[g-zG-Z#,}]/,
+      token.immediate(/[g-zG-Z#,}]/),
     ),
     expansion: _ => seq(
-      '#{',
+      '#',
+      token.immediate('{'),
       /[-_a-zA-Z]+/,
       '}',
     ),
     shell: _ => /[^)]+/,
     command: $ => seq(
-      '#(',
+      '#',
+      token.immediate('('),
       $.shell,
       ')',
     ),
     _syntax: $ => seq(alias(token.immediate(/[^],=]+/), $.key), optional(seq('=', alias(token.immediate(/[^],]+/), $.value)))),
     syntax: $ => seq(
-      '#[',
+      '#',
+      token.immediate('['),
       $._syntax,
       repeat(seq(',', $._syntax)),
       ']',
@@ -60,7 +66,9 @@ export default grammar({
     ),
     condition: _ => /[^#,}]+/,
     if: $ => seq(
-      '#{?',
+      '#',
+      token.immediate('{'),
+      token.immediate('?'),
       repeat1(
         seq(
           $.condition,
@@ -72,7 +80,8 @@ export default grammar({
       '}',
     ),
     binary: $ => seq(
-      '#{',
+      '#',
+      token.immediate('{'),
       alias(
         choice(
           token.immediate(choice('==', '!=', '<', '>', '<=', '>=', 'R', /m[^:]*/)),
@@ -90,7 +99,8 @@ export default grammar({
       '}',
     ),
     logic: $ => seq(
-      '#{',
+      '#',
+      token.immediate('{'),
       alias(token.immediate(choice('||', '&&')), $.function),
       token.immediate(':'),
       repeat1(
@@ -106,7 +116,8 @@ export default grammar({
       token.immediate(choice('!!', '!', /[a-df-ln-zA-OS-Z][^a-zA-Z:;][^:;]*/,)),
     ), $.function),
     unary: $ => seq(
-      '#{',
+      '#',
+      token.immediate('{'),
       $._unary,
       repeat(seq(';', $._unary)),
       token.immediate(':'),
