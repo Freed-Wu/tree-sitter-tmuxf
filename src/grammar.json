@@ -295,8 +295,16 @@
                 "value": ","
               },
               {
-                "type": "SYMBOL",
-                "name": "pattern"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "pattern"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               }
             ]
           }
@@ -312,8 +320,16 @@
                   "value": ","
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "pattern"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "pattern"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
                 }
               ]
             },

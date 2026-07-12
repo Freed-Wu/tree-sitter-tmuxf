@@ -73,10 +73,10 @@ export default grammar({
         seq(
           $.condition,
           ',',
-          $.pattern,
+          optional($.pattern),
         )
       ),
-      optional(seq(',', $.pattern)),
+      optional(seq(',', optional($.pattern))),
       '}',
     ),
     binary: $ => seq(
