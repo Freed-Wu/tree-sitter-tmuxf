@@ -7,5 +7,8 @@ mkShell {
   name = "tree-sitter-tmuxf";
   buildInputs = [
     tree-sitter
+    bun
+    cargo
+    uv
   ];
 }

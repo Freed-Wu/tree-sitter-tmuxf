@@ -14,7 +14,7 @@
     }
   ],
   "metadata": {
-    "version": "0.0.1",
+    "version": "0.0.4",
     "license": "MIT",
     "description": "🌲👨 tmux format ststring grammar for tree-sitter ",
     "authors": [
