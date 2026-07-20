@@ -64,4 +64,4 @@ FORMATS
 ```
 
 If you don't want to install nodejs to generate `src/grammar.json`,
-use [release](https://github.com/Freed-Wu/tree-sitter-tmuxf/tree/release).
+use branch [main](https://github.com/Freed-Wu/tree-sitter-tmuxf/tree/main).
