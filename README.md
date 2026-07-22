@@ -62,5 +62,3 @@ FORMATS
      This is a string which controls the output format of the command.
 ...
 ```
-
-Refer [tree-sitter-tmux](https://github.com/Freed-Wu/tree-sitter-tmux).
